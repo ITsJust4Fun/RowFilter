@@ -8,6 +8,8 @@ link.href = '/sites/all/modules/dgridpage/dgrid.css';
 
 head.appendChild(link);
 
+let modulePath = '/sites/all/modules/dgridpage';
+
 require({
 	packages: [{
 		name: 'dgrid',
@@ -20,7 +22,7 @@ require({
 		location: '/dojo/put-selector'
 	}, {
 		name: 'dgridpage',
-		location: '/sites/all/modules/dgridpage'
+		location: modulePath
 	}]
 },[
 	'dojo/_base/declare',
@@ -37,7 +39,7 @@ require({
 	'dojo/domReady!'
 ], function (declare, OnDemandGrid, RowFilter, Selection, Keyboard,
 			 Editor, Memory, Trackable, request, ColumnResizer, ColumnHider) {
-	request('dojo/hof-batting.json', {
+	request(modulePath + '/hof-batting.json', {
 		handleAs: "json"
 	}).then(function (response) {
 		let store = new (declare([Memory, Trackable]))({
@@ -121,23 +123,5 @@ require({
 		};
 
 		grid.startup();
-
-		function createData() {
-			var data = [];
-			var column;
-			var i;
-			var item;
-
-			for (i = 0; i < 50; i++) {
-				item = {};
-				for (column in {First_Name: 1, Last_Name: 1}) {
-					item.id = i;
-					item[column] = column + '_' + (i + 1);
-				}
-				data.push(item);
-			}
-
-			return data;
-		}
 	})
 });
