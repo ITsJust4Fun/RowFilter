@@ -1,0 +1,47 @@
+<?php
+
+function dgridpage_menu() {
+	$items = array();
+
+	$items['dgridpage'] = array(
+		'title' => 'Dgrid page',
+		'access callback' => TRUE,
+		'page callback' => 'get_form',
+		'page arguments' => array('get_dgrid_form'),
+		'type' => MENU_NORMAL_ITEM,
+		'menu' => 'navigation',
+	);
+
+	return $items;
+}
+
+function get_form() {
+	$output = "";
+	
+	$output .= '<div id="grid"></div>';
+	$output .= '<script src="dojo/dojo/dojo.js"
+		data-dojo-config="async: true, parseOnLoad: true"></script>';
+	$output .=  '<script src="sites/all/modules/dgridpage/dgrid.js"></script>';
+
+	return t($output);
+}
+
+function get_dgrid_form() {
+	$form = array();
+	
+	$form['Name'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Text'),
+		'#default_value' => variable_get('name', ''),
+		'#size' => 20,
+		'#maxlength' => 20,
+	);
+	
+	$form['checkbox'] = array(
+		'#type' => 'checkbox',
+		'#title' => t('Text'),
+		'#default_value' => variable_get('checkbox', false),
+	);
+	
+	return system_settings_form($form);
+}
