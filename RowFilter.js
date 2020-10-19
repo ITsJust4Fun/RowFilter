@@ -1,6 +1,5 @@
 define([
     'dojo/_base/declare',
-    'dgrid/OnDemandGrid',
     'dojo/dom-construct',
     'dojo/dom-class',
     'dojo/_base/lang',
@@ -8,7 +7,7 @@ define([
     'dojo/has',
     'dstore/Memory',
     'dstore/Trackable'
-], function (declare, OnDemandGrid, domConstruct, domClass, lang, listen, has, Memory, Trackable) {
+], function (declare, domConstruct, domClass, lang, listen, has, Memory, Trackable) {
     return declare(null, {
         destroy: function () {
             if (this._filterListeners) {

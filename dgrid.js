@@ -1,14 +1,13 @@
-var head = document.getElementsByTagName('HEAD')[0];
-var link = document.createElement('link');
-var dgrid = document.createElement('script');
+let head = document.getElementsByTagName('HEAD')[0];
+let link = document.createElement('link');
+let dgrid = document.createElement('script');
+let modulePath = '/sites/all/modules/dgridpage';
 
 link.rel = 'stylesheet';  
 link.type = 'text/css'; 
-link.href = '/sites/all/modules/dgridpage/dgrid.css';
+link.href = modulePath + '/dgrid.css';
 
 head.appendChild(link);
-
-let modulePath = '/sites/all/modules/dgridpage';
 
 require({
 	packages: [{
